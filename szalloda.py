@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 
 class Szoba(ABC):
@@ -48,11 +49,29 @@ class Szalloda:
         return len(self.szobak)
 
     def szoba_foglalas(self, szobaszam, datum):
+
+        try:
+            foglalas_datum = datetime.strptime(datum, "%Y-%m-%d")
+            today = datetime.today()
+            if foglalas_datum <= today:
+                print("Ez a dátum már elmúlt!")
+                return None
+        except ValueError:
+            print("Kérem adjon meg egy érvényes dátumot")
+            return None
+
+        for foglalas in self.foglalasok:
+            if foglalas.szoba.szobaszam == szobaszam and foglalas.datum == datum:
+                print("A megadott szoba már foglalt ezen a dátumon.")
+                return None
+
+
         for szoba in self.szobak:
             if szoba.szobaszam == szobaszam:
                 foglalas = Foglalas(szoba, datum)
                 self.foglalasok.append(foglalas)
                 return foglalas.szoba.ar
+        print("Nincs ilyen szoba a szállodában!")
         return None
 
     def foglalas_lemondas(self, szobaszam, datum):
@@ -86,7 +105,7 @@ def main():
         print("\nVálasszon műveletet:")
         print("1. Foglalás")
         print("2. Lemondás")
-        print("3. Fgolalások listázása")
+        print("3. Foglalások listázása")
         print("4. Kilépés")
 
         valasztas = input("Kérem válasszon:")
