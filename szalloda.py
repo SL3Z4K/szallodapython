@@ -62,6 +62,10 @@ class Szalloda:
                 return True
         return False
 
+    def foglalasok_listazasa(self):
+        for foglalas in self.foglalasok:
+            print(f"Foglalások: {foglalas.szoba.szobaszam}, Dátum: {foglalas.datum}")
+
 
 class Foglalas:
     def __init__(self, szoba, datum):
@@ -79,7 +83,7 @@ szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
 foglalas1 = szalloda.szoba_foglalas(101, "2024-06-23")
 foglalas2 = szalloda.szoba_foglalas(102, "2024-07-25")
 
-szalloda.foglalas_lemondas(101, "2024-06-23")
+#szalloda.foglalas_lemondas(101, "2024-06-23")
 szalloda.foglalas_lemondas(102, "2024-07-25")
 
 print(f"{szalloda.nev} szállodában összesen {szalloda.szobak_szama()} szoba van.")
@@ -88,3 +92,5 @@ print(foglalas1)
 print(foglalas2)
 
 print(szalloda.foglalasok)
+
+szalloda.foglalasok_listazasa()
