@@ -76,12 +76,54 @@ class Foglalas:
         return f"Foglalt szoba: {self.szoba}, dátum:{self.datum}"
 
 
+def main():
+    szalloda = Szalloda("Isten Király Hotel")
+    szalloda.add_szoba(EgyagyasSzoba(101, "Kicsi"))
+    szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
+    szalloda.add_szoba(EgyagyasSzoba(103, "Kicsi"))
+
+    while True:
+        print("\nVálasszon műveletet:")
+        print("1. Foglalás")
+        print("2. Lemondás")
+        print("3. Fgolalások listázása")
+        print("4. Kilépés")
+
+        valasztas = input("Kérem válasszon:")
+
+        if valasztas == "1":
+            szobaszam = int(input("Kérem adja meg a szoba számát: "))
+            datum = input("Kérem adja meg a foglalás dátumát:")
+            szalloda.szoba_foglalas(szobaszam, datum)
+            print("Foglalás sikeren rögzítve!")
+
+        elif valasztas == "2":
+            szobaszam = int(input("Kérem adja meg a szoba sorszámát: "))
+            datum = input("Kérem adja meg a foglalás dátumát: ")
+            if szalloda.foglalas_lemondas(szobaszam, datum):
+                print("A foglalását sikeresen lemondta!")
+            else:
+                print("Nem található ilyen foglalás.")
+
+        elif valasztas == "3":
+            szalloda.foglalasok_listazasa()
+
+        elif valasztas == "4":
+            print("Kilépés")
+            break
+
+        else:
+            print("Ez az opció nem elérhető, kérem válasszon újra!")
+
+
 szalloda = Szalloda("Isten Király Hotel")
 szalloda.add_szoba(EgyagyasSzoba(101, "Kicsi"))
 szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
+szalloda.add_szoba(EgyagyasSzoba(103, "Kicsi"))
 
 foglalas1 = szalloda.szoba_foglalas(101, "2024-06-23")
 foglalas2 = szalloda.szoba_foglalas(102, "2024-07-25")
+foglalas3 = szalloda.szoba_foglalas(101, "2024-07-26")
 
 #szalloda.foglalas_lemondas(101, "2024-06-23")
 szalloda.foglalas_lemondas(102, "2024-07-25")
@@ -94,3 +136,6 @@ print(foglalas2)
 print(szalloda.foglalasok)
 
 szalloda.foglalasok_listazasa()
+
+if __name__ == "__main__":
+    main()
