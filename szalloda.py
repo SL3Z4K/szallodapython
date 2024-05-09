@@ -41,6 +41,13 @@ class Szalloda:
 
     def szobak_szama(self):
         return len(self.szobak)
+    
+    def szoba_foglalas(self, szobaszam, datum):
+        for szoba in self.szobak:
+            if szoba.szobaszam == szobaszam:
+                foglalas = Foglalas(szoba, datum)
+                return foglalas.szoba.ar
+        return None
 
 class Foglalas:
     def __init__(self, szoba, datum):
@@ -53,8 +60,8 @@ class Foglalas:
 szalloda = Szalloda("Isten Király Hotel")
 szalloda.add_szoba(EgyagyasSzoba(101, "Kicsi"))
 szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
-foglalas1 = Foglalas(EgyagyasSzoba(101, "Kicsi"), "2024-06-23")
-foglalas2 = Foglalas(KetagyasSzoba(102, "Nagy"), "2024-07-25")
+foglalas1 = szalloda.szoba_foglalas(101, "2024-06-23")
+foglalas2 = szalloda.szoba_foglalas(102, "2024-07-25")
 
 
 print(f"{szalloda.nev} szállodában összesen {szalloda.szobak_szama()} szoba van.")
