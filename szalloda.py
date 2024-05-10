@@ -140,7 +140,7 @@ def main():
         else:
             print("Ez az opció nem elérhető, kérem válasszon újra!")
 
-
+'''
 szalloda = Szalloda("Isten Király Hotel")
 szalloda.add_szoba(EgyagyasSzoba(101, "Kicsi"))
 szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
@@ -161,6 +161,6 @@ print(foglalas2)
 print(szalloda.foglalasok)
 
 szalloda.foglalasok_listazasa()
-
+'''
 if __name__ == "__main__":
     main()
