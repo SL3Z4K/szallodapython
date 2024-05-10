@@ -101,6 +101,12 @@ def main():
     szalloda.add_szoba(KetagyasSzoba(102, "Nagy"))
     szalloda.add_szoba(EgyagyasSzoba(103, "Kicsi"))
 
+    szalloda.szoba_foglalas(101, "2024-05-30")
+    szalloda.szoba_foglalas(103, "2024-06-12")
+    szalloda.szoba_foglalas(102, "2024-06-04")
+    szalloda.szoba_foglalas(101, "2024-08-20")
+    szalloda.szoba_foglalas(101, "2024-07-24")
+
     while True:
         print("\nVálasszon műveletet:")
         print("1. Foglalás")
